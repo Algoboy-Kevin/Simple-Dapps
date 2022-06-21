@@ -1,6 +1,6 @@
 # Simple Dapps
 
-This is repository for Simple Dapps. This application purpose is to demostrate apps ability to connect to blockchain and fetch data from smart contracts. This apps will connect to your browser wallet (i.e metamask) and request connection to Avalance Network (AVAX)
+This is repository for Simple Dapps. This application purpose is to demostrate the apps features to connect to blockchain and fetch data from smart contracts. This apps will request connection to your browser wallet (i.e metamask) and switch you to Avalance Network (AVAX)
 
 ## 🔧 Setting up local development
 
