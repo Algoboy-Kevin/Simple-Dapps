@@ -1,6 +1,6 @@
 # Simple Dapps
 
-This is repository for Simple Dapps. This application purpose is to demostrate the apps features to connect to blockchain and fetch data from smart contracts. This apps will request connection to your browser wallet (i.e metamask) and switch you to Avalance Network (AVAX)
+This application purpose is to ability to connect with the blockchain. The apps will request connection to your browser wallet (i.e metamask) and switch you to Avalance Network (AVAX)
 
 ## 🔧 Setting up local development
 
@@ -17,13 +17,13 @@ npm run dev
 
 ## 📻 Features
 
-Below are key feature of the apps:
+Below are the key feature:
 1. Wallet connection
 2. AAVE APY offering table
 
 ## 🛬 Smart Contract References
 
-Offering data is fetched directly from AAVE smart contracts. Below are the details of each smart contract.
+The apps fetch the data directly from AAVE smart contracts. You can see the contract details below.
 
 | Smart Contract | Address | Description | 
 | --- | --- | --- |
