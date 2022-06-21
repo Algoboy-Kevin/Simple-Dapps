@@ -18,8 +18,8 @@ npm run dev
 ## 📻 Features
 
 Below are key feature of the apps:
-    1. Wallet connection
-    2. AAVE APY offering table
+1. Wallet connection
+2. AAVE APY offering table
 
 ## 🛬 Smart Contract References
 
