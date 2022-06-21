@@ -10,7 +10,7 @@
     "start": "cross-env NODE_ENV=production node server.js",
     "debug": "node --inspect-brk server.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -b master -d build"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.3",
