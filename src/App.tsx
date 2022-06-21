@@ -64,7 +64,7 @@ function App() {
         address: "",
         loading: false,
       });
-      throw Error(e);
+      throw Error(e.message);
     }
   }
 
@@ -99,7 +99,6 @@ function App() {
         address: "",
         loading: false,
       });
-      console.log(provider);
     }
   }
 
@@ -140,8 +139,14 @@ function App() {
       await requestingNetwork();
       await connectingWallet();
       await fetchingTableData();
-    } catch (err) {
-      console.log(err);
+    } catch (err:any) {
+      setWalletState({
+        ...walletState,
+        connected: false, 
+        message: "Error, unable to connect", 
+        address: "",
+        loading: false,
+      });
     }
   }
 
