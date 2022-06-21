@@ -1,14 +1,15 @@
 import { useEffect } from 'react'
 import {themeChange} from 'theme-change'
 import { useRecoilState } from 'recoil';
-import { WalletState } from './store';
+import { WalletState, OfferingState } from './store';
 import { ethers } from 'ethers';
 import { fetchData, sleep } from "./utils";
-import ConnectButton from './components/connectbutton';
+import ConnectButton from './components/ConnectButton';
 import OfferingTable from './components/OfferingTable';
 
 function App() {
   const [walletState, setWalletState] = useRecoilState(WalletState);
+  const [offeringState, setOfferingState] = useRecoilState(OfferingState);
 
   const checkNetwork = () => {
     if (window.ethereum === undefined) {
@@ -102,15 +103,46 @@ function App() {
     }
   }
 
+  const fetchingTableData = async () => {
+    setOfferingState({
+      ...offeringState,
+      fetched: false,
+      loading: false,
+      data: {},
+    });
+    let data = {};
+    let fetched = false;
+    try {
+      setOfferingState({
+        ...offeringState,
+        fetched: false,
+        loading: true,
+        data: data,
+      });
+      data = await fetchData();
+      fetched = true;
+    } catch(err: any) {
+      throw Error(err);
+    } finally {
+      setOfferingState({
+        ...offeringState,
+        fetched: fetched,
+        loading: false,
+        data: data,
+      });
+    }
+  }
+
   const connectHandler = async () => {
+    disconnectWallet();
+    
     try{
       await requestingNetwork();
       await connectingWallet();
-      await fetchData();
+      await fetchingTableData();
     } catch (err) {
       console.log(err);
     }
-    
   }
 
   const disconnectWallet = async () => {
@@ -120,6 +152,13 @@ function App() {
       message: "Disconnected from chain network", 
       address: "",
       loading: false,
+    });
+
+    setOfferingState({
+      ...offeringState,
+      fetched: false,
+      loading: false,
+      data: {},
     });
   }
 
@@ -145,31 +184,47 @@ function App() {
   }, []);
   
   return (
-    <div className="min-h-screen hero bg-base-200">
-      <header className="text-center hero-content ">
-        <div className="flex flex-col items-center max-w-md gap-4">
-          <h1 className="mb-5 text-5xl font-bold ">
-            Test Dapps
-          </h1>
-          <p className="mb-5">
-            Welcome to Test Dapps. To see our APY offering please connect your wallet!
-          </p>
-          <select data-choose-theme className='text-black '>
-            <option value="">Change Theme</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-            <option value="cupcake">Cupcake</option>
-            <option value="cyberpunk">Cyberpunk</option>
-            <option value="synthwave">Synthwave</option>
-          </select>
-          <ConnectButton 
-            onDisconnect={() => disconnectWallet()} 
-            onConnect={() => connectHandler()}
-          />
-          <p className="mb-5">{walletState.message}</p>
-          {walletState.connected ? <OfferingTable></OfferingTable> : <></>}
-        </div>
-      </header>  
+    <div className="w-screen h-screen hero bg-gradient-to-bl from-base-100 to-primary-focus">
+      <div className="max-w-full p-3 mx-auto ">
+        <header className="text-center border-2 hero-content border-neutral">
+          <div className="flex flex-col items-center max-w-md gap-2 ">
+            <h1 className="mb-5 text-5xl font-bold ">
+              Test Dapps
+            </h1>
+            <h1 >
+              Welcome to Test Dapps. To see our APY offering please connect your browser wallet!
+            </h1>
+            <div className="flex flex-col gap-1 mb-3">
+              
+            <p>Theme selector 🥳</p>
+              <select data-choose-theme className='text-sm text-black '>
+                <option value="">Change Theme</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="cupcake">Cupcake</option>
+                <option value="cyberpunk">Cyberpunk</option>
+                <option value="synthwave">Synthwave</option>
+              </select>
+            </div>
+
+            <ConnectButton 
+              onDisconnect={() => disconnectWallet()} 
+              onConnect={() => connectHandler()}
+            />
+            <p className="mb-5 overflow-hidden w-80 text-ellipsis">
+              {walletState.message}
+            </p>
+            
+            {
+              walletState.connected ? 
+                offeringState.loading? 
+                  <p>Loading table...</p> : offeringState.fetched ? 
+                    <OfferingTable></OfferingTable> : <p>There's no staking offering</p>
+              : <></>
+            }
+          </div>
+        </header>
+      </div>  
     </div>
   )
 }

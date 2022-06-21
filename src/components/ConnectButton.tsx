@@ -3,7 +3,7 @@ import { WalletState } from '../store';
 
 const ConnectButton = (props:any) => {
   const [walletState, setWalletState] = useRecoilState(WalletState);
-  const style = walletState.loading ? "btn btn-disabled" : walletState.connected ? "btn btn-secondary" : "btn btn-primary";
+  const style = walletState.loading ? "btn btn-disabled" : walletState.connected ? "btn btn-outline" : "btn btn-primary";
   const message = walletState.loading? "Loading" : walletState.connected ? "Disconnect" : "Connect";
 
   const onClickHandler = async () => {

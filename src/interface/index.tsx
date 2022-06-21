@@ -1,5 +1,8 @@
 export interface Offering {
-  icon: any,
-  apy: any,
-  incentive: any,
+  tokenName : String, 
+  address : String, 
+  depositAPR : Number, 
+  depositAPY : Number, 
+  incentiveAPR : Number, 
+  incentiveAPY : Number,
 }
