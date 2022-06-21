@@ -1,6 +1,8 @@
 # Simple Dapps
 
-This application purpose is to ability to connect with the blockchain. The apps will request connection to your browser wallet (i.e metamask) and switch you to Avalance Network (AVAX)
+This application purpose is to ability to connect with the blockchain. The apps will request connection to your browser wallet (i.e metamask) and switch you to Avalance Network (AVAX). [Click here to preview](https://algoboy-kevin.github.io/Simple-Dapps/)
+
+
 
 ## 🔧 Setting up local development
 
