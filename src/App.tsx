@@ -189,10 +189,10 @@ function App() {
         <header className="text-center border-2 hero-content border-neutral">
           <div className="flex flex-col items-center max-w-md gap-2 ">
             <h1 className="mb-5 text-5xl font-bold ">
-              Test Dapps
+              Simple Dapps
             </h1>
             <h1 >
-              Welcome to Test Dapps. To see our APY offering please connect your browser wallet!
+              Welcome to Simple Dapps. To see our APY offering please connect your browser wallet!
             </h1>
             <div className="flex flex-col gap-1 mb-3">
               
