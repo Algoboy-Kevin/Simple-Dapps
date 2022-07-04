@@ -58,11 +58,13 @@ export const fetchData = async () => {
     const tokenName = addressToName[address];
     const incentiveData = offering.aIncentiveData.rewardsTokenInformation[0];
     const poolData = await poolDataContract.getReserveData(address);
-
+    if (incentiveData == undefined) {
+      continue;
+    }
+    
     const underlyingTokenDecimals = incentiveData.precision;
     const rewardTokenDecimals = incentiveData.rewardTokenDecimals;
     const rewardPriceFeedDecimals = incentiveData.rewardPriceFeedDecimals;
-
 
     //Deposit Calculations
     //APY and APR are returned here as decimals
@@ -92,7 +94,6 @@ export const fetchData = async () => {
     const object = {tokenName, address, depositAPR, depositAPY, incentiveAPR, incentiveAPY};
     offerings[tokenName] = {...object};
   }
-  console.log(offerings);
   return offerings;
 }
 

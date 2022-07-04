@@ -140,6 +140,7 @@ function App() {
       await connectingWallet();
       await fetchingTableData();
     } catch (err:any) {
+
       setWalletState({
         ...walletState,
         connected: false, 
