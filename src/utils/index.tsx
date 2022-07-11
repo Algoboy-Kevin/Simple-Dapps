@@ -27,6 +27,7 @@ export const addressToName = {
   "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e" : "usdc",
   "0x63a72806098bd3d9520cc43356dd78afe5d386d9" : "aave",
   "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7" : "wavax",
+  "0x2b2c81e08f1af8835a78bb2a90ae924ace0ea4be" : "savax"
 }
 
 export const fetchData = async () => {

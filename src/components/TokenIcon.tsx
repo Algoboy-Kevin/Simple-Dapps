@@ -1,4 +1,4 @@
-import { DaiIcon, LinkIcon, UsdcIcon, UsdtIcon, WbtcIcon, WethIcon, AaveIcon, WavaxIcon } from "../asset/svg";
+import { DaiIcon, LinkIcon, UsdcIcon, UsdtIcon, WbtcIcon, WethIcon, AaveIcon, WavaxIcon, SavaxIcon } from "../asset/svg";
 
 const TokenIcon = (props:any) => {
   const style = props.className;
@@ -19,6 +19,8 @@ const TokenIcon = (props:any) => {
       return (<AaveIcon className={style}/>);
     case "wavax":
       return (<WavaxIcon className={style}/>);
+    case "savax":
+      return (<SavaxIcon className={style}/>);
     default: 
       return (<AaveIcon className={style}/>);
   }
